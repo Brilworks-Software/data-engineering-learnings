@@ -47,7 +47,11 @@ git checkout -b learner/<your-name>
 git push -u origin learner/<your-name>
 ```
 
-### 3. Connect in Databricks
+### 3. Connect in Databricks (optional)
+
+Connecting through Databricks Repos is optional. You can also do all your work locally in your own IDE (VS Code, PyCharm, etc.) and push with regular Git. Use whichever workflow you prefer.
+
+To connect via Databricks:
 
 1. In your Databricks workspace, go to **Repos** and click **Add Repo**.
 2. Paste the HTTPS Git URL of this repository.
