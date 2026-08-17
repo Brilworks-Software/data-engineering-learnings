@@ -186,7 +186,10 @@ cython_debug/
 #   be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
 #   and can be added to the global gitignore or merged into this file.  For a more nuclear
 #   option (not recommended) you can uncomment the following to ignore the entire idea folder.
-# .idea/
+#   Enabled here on purpose: the only content is machine-specific (the .iml
+#   hardcodes an absolute Python SDK path) and the cohort uses a mix of PyCharm,
+#   VS Code and Databricks notebooks.
+.idea/
 
 # Abstra
 #   Abstra is an AI-powered process automation framework.
@@ -216,3 +219,42 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# =============================================================================
+# Project-specific -- everything above this line is the stock GitHub Python
+# template.
+# =============================================================================
+
+# Script output. Regenerated on every run by the cafe sales scripts, so it is
+# derived data, not source: the cleaned table plus the KPI tables.
+output/
+
+# Local Spark leftovers. spark-sql drops a Derby metastore and its log into the
+# working directory, and CREATE TABLE adds a warehouse folder. All three are
+# local scratch -- on Databricks the metastore is managed for you.
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Claude Code local state. .claude/skills/ is shared team tooling and stays
+# tracked, so it is negated back in; settings.json is per-machine, so if the
+# cohort ever wants to share it, add an exception the same way.
+.claude/*
+!.claude/skills/
+
+# Empty stub files that tooling drops in the repo root. All are 0 bytes and
+# none of them configure this project -- they are shell and editor files that
+# belong in $HOME, not in version control.
+.bash_profile
+.bashrc
+.gitconfig
+.mcp.json
+.profile
+.ripgreprc
+.vscode
+.zprofile
+.zshrc
+
+# .gitmodules is deliberately NOT ignored. The copy sitting here is an empty
+# stub, but it is a real git file: ignoring it would hide a genuine submodule
+# config if this repo ever gains one.
